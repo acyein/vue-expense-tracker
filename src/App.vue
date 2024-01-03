@@ -1,47 +1,32 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+	<Header />
+	<div class="container">
+		<Balance :total="total" />
+		<IncomeExpenses />
+		<TransactionList :transactions="transactions" />
+		<AddTransaction />
+	</div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script setup>
+import Header from './components/Header.vue';
+import Balance from './components/Balance.vue';
+import IncomeExpenses from './components/IncomeExpenses.vue';
+import TransactionList from './components/TransactionList.vue';
+import AddTransaction from './components/AddTransaction.vue';
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+import { ref, computed } from 'vue';
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+const transactions = ref([
+	{ id: 1, text: 'Flower', amount: -19.99 },
+	{ id: 2, text: 'Salary', amount: 299.97 },
+	{ id: 3, text: 'Book', amount: -10 },
+	{ id: 4, text: 'Camera', amount: 150 },
+]);
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+const total = computed(() => {
+	return transactions.value.reduce((acc, transaction) => {
+		return acc + transaction.amount;
+	}, 0); // Start at 0
+});
+</script>
