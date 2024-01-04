@@ -4,15 +4,15 @@
 	<h3>Add new transaction</h3>
 	<form id="form" @submit.prevent="onSubmit">
 		<div class="form-control">
-			<label for="text">Text</label>
-			<input type="text" id="text" v-model="text" placeholder="Enter text..." />
+			<label for="text" class="form-label">Title</label>
+			<input type="text" id="text" v-model="text" placeholder="e.g. Groceries" />
 		</div>
 		<div class="form-control">
-			<label for="amount"
+			<label for="amount" class="form-label"
 				>Amount <br />
-				(negative - expense, positive - income)</label
+				(negative: expense, positive: income)</label
 			>
-			<input type="text" id="amount" v-model="amount" placeholder="Enter amount..." />
+			<input type="text" id="amount" v-model="amount" placeholder="0.00" />
 		</div>
 		<button class="btn">Add transaction</button>
 	</form>

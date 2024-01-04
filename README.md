@@ -4,8 +4,8 @@ An expense tracker app built with Vue 3 (composition API).
 
 ### Functions
 
-- Add and remove expenses
-- Track balance of expenses
+- Add and remove income/expenses
+- Track balance
 
 ## Recommended IDE Setup
 
