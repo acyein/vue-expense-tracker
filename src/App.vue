@@ -17,17 +17,21 @@ import AddTransaction from './components/AddTransaction.vue';
 
 import { useToast } from 'primevue/usetoast';
 
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 
 // Toast
 const toast = useToast();
 
-const transactions = ref([
-	{ id: 1, text: 'Flower', amount: -19.99 },
-	{ id: 2, text: 'Salary', amount: 299.97 },
-	{ id: 3, text: 'Book', amount: -10 },
-	{ id: 4, text: 'Camera', amount: 150 },
-]);
+const transactions = ref([]);
+
+// onMounted() is similar to useEffect() in React
+onMounted(() => {
+	const savedTransactions = JSON.parse(localStorage.getItem('transactions'));
+
+	if (savedTransactions) {
+		transactions.value = savedTransactions;
+	}
+});
 
 // Get total
 const total = computed(() => {
@@ -63,18 +67,14 @@ const expenses = computed(() => {
 const handleTransactionSubmitted = (transactionData) => {
 	// Push transaction data
 	transactions.value.push({
-		// Generate ID per transaction
-		id: generateUniqueId(),
+		id: generateUniqueId(), // Generate ID per transaction
 		text: transactionData.text,
 		amount: transactionData.amount,
 	});
 
-	toast.add({ severity: 'success', summary: 'Success', detail: 'Transaction added', life: 3000 });
-};
+	saveTransactionsToLocalStorage();
 
-// Generate unique ID
-const generateUniqueId = () => {
-	return Math.floor(Math.random() * 1000000);
+	toast.add({ severity: 'success', summary: 'Success', detail: 'Transaction added', life: 3000 });
 };
 
 // Delete transaction
@@ -82,6 +82,18 @@ const handleTransactionDeleted = (id) => {
 	// Filter out transaction from DOM
 	transactions.value = transactions.value.filter((transaction) => transaction.id !== id);
 
+	saveTransactionsToLocalStorage();
+
 	toast.add({ severity: 'success', summary: 'Success', detail: 'Transaction deleted', life: 3000 });
+};
+
+// Generate unique ID
+const generateUniqueId = () => {
+	return Math.floor(Math.random() * 1000000);
+};
+
+// Save to localStorage
+const saveTransactionsToLocalStorage = () => {
+	localStorage.setItem('transactions', JSON.stringify(transactions.value));
 };
 </script>
