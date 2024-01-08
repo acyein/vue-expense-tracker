@@ -13,8 +13,6 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
-
 const emit = defineEmits(['transactionDeleted']);
 
 const props = defineProps({
