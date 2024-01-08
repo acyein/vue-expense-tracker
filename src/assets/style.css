@@ -101,6 +101,10 @@ input[type='number'] {
 	width: 100%;
 }
 
+button {
+	font-family: inherit;
+}
+
 .btn {
 	cursor: pointer;
 	background-color: var(--purple);
@@ -147,7 +151,6 @@ input[type='number'] {
 }
 
 .delete-btn {
-	font-family: inherit;
 	display: flex;
 	justify-content: center;
 	align-items: center;
