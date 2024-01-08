@@ -22,13 +22,14 @@ body {
 	justify-content: center;
 	min-height: 100vh;
 	margin: 0;
+	padding: 0 2rem;
 	font-family: 'Lato', sans-serif;
 	font-size: 18px;
 }
 
 .container {
+	width: 100%;
 	margin: 30px auto;
-	width: 400px;
 }
 
 h1 {
@@ -50,7 +51,7 @@ h4 {
 .inc-exp-container {
 	background-color: #fff;
 	box-shadow: var(--box-shadow-md);
-	padding: 20px;
+	padding: 15px;
 	display: flex;
 	justify-content: space-between;
 	margin: 20px 0;
@@ -146,6 +147,7 @@ input[type='number'] {
 }
 
 .delete-btn {
+	font-family: inherit;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -156,8 +158,8 @@ input[type='number'] {
 	border-top-left-radius: 3px;
 	border-bottom-left-radius: 3px;
 	color: #fff;
-	font-size: 18px;
-	padding: 0 8px;
+	font-size: 14px;
+	padding: 0 5px;
 	position: absolute;
 	top: 50%;
 	left: 0;
@@ -168,4 +170,13 @@ input[type='number'] {
 
 .list li:hover .delete-btn {
 	opacity: 1;
+}
+
+@media (min-width: 640px) {
+	.container {
+		width: 400px;
+	}
+	.inc-exp-container {
+		padding: 20px;
+	}
 }
