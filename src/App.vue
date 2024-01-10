@@ -6,10 +6,12 @@
 		<TransactionList :transactions="transactions" @transactionDeleted="handleTransactionDeleted" />
 		<AddTransaction @transactionSubmitted="handleTransactionSubmitted" />
 	</div>
+	<Footer />
 </template>
 
 <script setup>
 import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
 import Balance from './components/Balance.vue';
 import IncomeExpenses from './components/IncomeExpenses.vue';
 import TransactionList from './components/TransactionList.vue';
